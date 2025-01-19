@@ -65,20 +65,18 @@ def update_request(request, request_id):
 
 
 from django.shortcuts import render, redirect
-from .forms import CustomerRequestForm
+from .forms import CustomerRequestForm\
 
 def submit_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
         if form.is_valid():
-            # Save the form
-            request_obj = form.save()
-            # Send email to customer with tracking ID
-            return redirect('home')  # Redirect to the home page after submission
+            form.save()
+            return render(request, 'request/success.html')
     else:
         form = CustomerRequestForm()
-
     return render(request, 'submit_request.html', {'form': form})
+
 
 def home(request):
     return render(request, 'home.html')

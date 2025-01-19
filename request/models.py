@@ -27,14 +27,21 @@ from django.db import models
 class CustomerRequest(models.Model):
     customer_name = models.CharField(max_length=255)
     customer_email = models.EmailField()
-    customer_phone = models.CharField(max_length=20)
-    customer_address = models.TextField(null=True, blank=True)
+    customer_phone = models.CharField(max_length=15)
+    customer_address = models.TextField()
     issue_description = models.TextField()
-    status = models.CharField(max_length=50, default='Pending')
+    status = models.CharField(
+        max_length=50,
+        choices=[
+            ('Pending', 'Pending'),
+            ('In Progress', 'In Progress'),
+            ('Resolved', 'Resolved')
+        ],
+        default='Pending'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     tentative_date = models.DateField(null=True, blank=True)
     resolved_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.customer_name} - {self.status}"
+        return f"{self.customer_name} - {self.issue_description}"

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Request</title>
+    <title>Submit Issue</title>
 </head>
 <body>
-    <h1>Submit a Request</h1>
-    <form method="POST">
+    <h2>Submit Your Issue</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
