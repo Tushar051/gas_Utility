@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Issue Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.customer_name }}</td>
+            <td>{{ request.issue_description }}</td>
+            <td>{{ request.status }}</td>
+            <td><a href="{% url 'update_request' request.id %}">Update</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

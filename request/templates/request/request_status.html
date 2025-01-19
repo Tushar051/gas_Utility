@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Service Request</title>
+</head>
+<body>
+    <h2>Track Your Service Request</h2>
+    {% if request %}
+        <p>Request ID: {{ request.tracking_id }}</p>
+        <p>Status: {{ request.status }}</p>
+        <p>Submitted at: {{ request.created_at }}</p>
+        {% if request.approved_at %}
+            <p>Approved at: {{ request.approved_at }}</p>
+        {% endif %}
+    {% else %}
+        <p>Request not found.</p>
+    {% endif %}
+</body>
+</html>
