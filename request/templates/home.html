@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Welcome to Gas Utility</title>
@@ -6,5 +6,46 @@
 <body>
     <h1>Welcome to Gas Utility Customer Portal</h1>
     <p><a href="{% url 'submit_request' %}">Submit a request</a></p>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Gas Utility</title>
+    <link rel="stylesheet" href="/request/templates/static/css/home.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/" class="logo">Gas Utility</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Welcome to Gas Utility Customer Portal</h1>
+            <p>Manage your gas service, view bills, and submit requests all in one place</p>
+            <a href="{% url 'submit_request' %}" class="btn btn-large">Submit a Request</a>
+        </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Easy Bill Management</h3>
+                <p>View and pay your bills online with our secure payment system</p>
+            </div>
+            <div class="feature-card">
+                <h3>24/7 Support</h3>
+                <p>Get assistance anytime with our dedicated customer support team</p>
+            </div>
+            <div class="feature-card">
+                <h3>Service Requests</h3>
+                <p>Submit and track your service requests effortlessly</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
