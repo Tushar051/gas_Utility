@@ -65,17 +65,17 @@ def update_request(request, request_id):
 
 
 from django.shortcuts import render, redirect
-from .forms import CustomerRequestForm\
+from .forms import CustomerRequestForm
 
 def submit_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, 'request/success.html')
+            form.save()  # Save the form to the database
+            return render(request, 'success.html')  # Redirect to a success page
     else:
-        form = CustomerRequestForm()
-    return render(request, 'submit_request.html', {'form': form})
+        form = CustomerRequestForm()  # Initialize a blank form
+    return render(request, 'submit.html', {'form': form})
 
 
 def home(request):

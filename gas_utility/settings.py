@@ -45,11 +45,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # This must be enabled
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'gas_utility.urls'
 
@@ -131,11 +132,13 @@ APPEND_SLASH = True
 
 
 
+# settings.py
 
+# Email settings for Gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tusharkedar110@gmail.com'
-EMAIL_HOST_PASSWORD = 'Kedar0510'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_USER = 'tusharkedar110gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  # The App Password you generated
+DEFAULT_FROM_EMAIL = 'tusharkedar110@gmail.com'  # The email address used for sending
