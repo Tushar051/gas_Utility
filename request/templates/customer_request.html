@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Customer Request Form</title>
@@ -10,5 +10,177 @@
         {{ form.as_p }}
         <button type="submit">Submit Request</button>
     </form>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer Request Form</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            margin: 0;
+            padding: 2rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        h1 {
+            color: var(--text);
+            margin: 0 0 2rem 0;
+            font-size: 1.875rem;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        input, textarea, select {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .errorlist {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Custom styling for Django form elements */
+        p {
+            margin: 0;
+        }
+
+        /* Help text styling */
+        .helptext {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Submit an Issue</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <span class="helptext">{{ field.help_text }}</span>
+                    {% endif %}
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
 </body>
 </html>
