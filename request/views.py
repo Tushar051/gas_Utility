@@ -80,3 +80,19 @@ def submit_request(request):
 
 def home(request):
     return render(request, 'home.html')
+
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def send_test_email(request):
+    try:
+        send_mail(
+            'Test Email Subject',
+            'This is a test email.',
+            'your_email@gmail.com',
+            ['recipient_email@example.com'],
+            fail_silently=False,
+        )
+        return HttpResponse("Email sent successfully!")
+    except Exception as e:
+        return HttpResponse(f"Error: {str(e)}")

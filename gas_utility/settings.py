@@ -134,11 +134,9 @@ APPEND_SLASH = True
 
 # settings.py
 
-# Email settings for Gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tusharkedar110gmail.com'  # Your Gmail address
-EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  # The App Password you generated
-DEFAULT_FROM_EMAIL = 'tusharkedar110@gmail.com'  # The email address used for sending
+EMAIL_HOST_USER = 'tusharkedar110@gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  # App password from Google
