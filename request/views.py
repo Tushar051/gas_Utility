@@ -7,7 +7,7 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 
 def home(request):
-    return render(request, 'home.html')  # This will render the home.html template
+    return render(request, 'home.html')  
 
 
 def customer_request(request):
@@ -121,9 +121,6 @@ def submit_request(request):
 def track_request(request):
     tracking_id = request.GET.get('id')
     if not tracking_id:
-        return render(request, 'track.html', {'error': 'Tracking ID is required.'})
-    
-   
-    request_obj = get_object_or_404(CustomerRequest, tracking_id=tracking_id)
-    
+        return render(request, 'track.html', {'error': 'Tracking ID is required.'})   
+    request_obj = get_object_or_404(CustomerRequest, tracking_id=tracking_id)  
     return render(request, 'track.html', {'request_obj': request_obj})
