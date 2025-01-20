@@ -1,143 +1,175 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to Gas Utility</title>
-</head>
-<body>
-    <h1>Welcome to Gas Utility Customer Portal</h1>
-    <p><a href="{% url 'submit_request' %}">Submit a request</a></p>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Gas Utility</title>
-    <!-- <link rel="stylesheet" href="/request/templates/static/css/home.css"> -->
-     <style>
-        /* Main Layout */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 4rem 2rem;
-    text-align: center;
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-  
-  .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
-  
-  /* Navigation */
-  .nav {
-    background: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1a365d;
-    text-decoration: none;
-  }
-  
-  /* Buttons */
-  .btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background: #1d4ed8;
-  }
-  
-  .btn-large {
-    font-size: 1.2rem;
-    padding: 1.2rem 2.5rem;
-  }
-  
-  /* Features Section */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  
-  .feature-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .feature-card h3 {
-    color: #1a365d;
-    margin: 1rem 0;
-    font-size: 1.5rem;
-  }
-  
-  .feature-card p {
-    color: #4a5568;
-    line-height: 1.6;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .hero {
-      padding: 3rem 1rem;
-    }
-    
-    .hero h1 {
-      font-size: 2rem;
-    }
-    
-    .features {
-      grid-template-columns: 1fr;
-    }
-  }
+    <style>
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        
+        .nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            text-decoration: none;
+        }
+        
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 1.2rem 2.5rem;
+        }
+        
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            color: #1a365d;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
 
-     </style>
+       
+        .tracking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tracking-form label {
+            display: block;
+            margin-bottom: 1rem;
+            color: #1a365d;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .tracking-form input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .tracking-form input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .tracking-form button {
+            width: 100%;
+            max-width: 200px;
+        }
+        
+       
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .tracking-form {
+                margin: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="nav">
@@ -168,19 +200,11 @@
             </div>
         </div>
 
-
-        <!-- Request Tracking Section -->
-<!-- <form action="/track/" method="get">
-  <label for="tracking_id">Enter Tracking ID:</label>
-  <input type="text" name="id" id="tracking_id" required>
-  <button type="submit">Track</button>
-</form> -->
-
-<form action="{% url 'track_request' %}" method="get">
-  <label for="id">Enter Tracking ID:</label>
-  <input type="text" name="id" id="id" required>
-  <button type="submit">Track</button>
-</form>
+        <form action="{% url 'track_request' %}" method="get" class="tracking-form">
+            <label for="id">Enter Tracking ID:</label>
+            <input type="text" name="id" id="id" required placeholder="Enter your tracking ID">
+            <button type="submit" class="btn">Track Request</button>
+        </form>
 
     </div>
 </body>

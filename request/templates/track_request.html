@@ -1,4 +1,4 @@
-<!-- <style>
+<style>
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f9;
@@ -84,19 +84,4 @@
     {% elif error %}
         <p class="error">{{ error }}</p>
     {% endif %}
-</div> -->
-
-
-{% if error %}
-    <p>{{ error }}</p>
-{% else %}
-    <h1>Request Status for {{ request.tracking_id }}</h1>
-    <p><strong>Name:</strong> {{ request.customer_name }}</p>
-    <p><strong>Status:</strong> {{ request.status }}</p>
-    <p><strong>Description:</strong> {{ request.issue_description }}</p>
-    <p><strong>Tentative Resolution Date:</strong> {{ request.tentative_date|default:"Not Assigned" }}</p>
-    <p><strong>Created At:</strong> {{ request.created_at }}</p>
-    {% if request.resolved_at %}
-        <p><strong>Resolved At:</strong> {{ request.resolved_at }}</p>
-    {% endif %}
-{% endif %}
+</div>

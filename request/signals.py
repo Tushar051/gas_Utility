@@ -5,7 +5,7 @@ from .models import CustomerRequest
 
 @receiver(post_save, sender=CustomerRequest)
 def send_status_update_email(sender, instance, **kwargs):
-    if not kwargs['created']:  # Update only, not creation
+    if not kwargs['created']: 
         send_mail(
             subject="Issue Status Update",
             message=f"Hello {instance.customer_name},\n\nYour issue status has been updated to '{instance.status}'. The tentative resolution date is {instance.tentative_date}.",

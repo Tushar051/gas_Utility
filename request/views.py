@@ -4,23 +4,17 @@ from .forms import CustomerRequestForm
 from .models import CustomerRequest
 from django.core.mail import send_mail
 from django.conf import settings
-
-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 def home(request):
     return render(request, 'home.html')  # This will render the home.html template
 
 
-# Customer request form page
 def customer_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
         if form.is_valid():
-            # Save the customer request
             customer_request = form.save()
-            
-            # Send the tracking ID to the customer email
             send_mail(
                 'Your Tracking ID',
                 f'Your tracking ID is {customer_request.id}. You can track the status of your issue.',
@@ -32,16 +26,14 @@ def customer_request(request):
         form = CustomerRequestForm()
     return render(request, 'customer_request.html', {'form': form})
 
-# Thank you page after form submission
+
 def thank_you(request):
     return render(request, 'thank_you.html')
 
-# Admin view to approve/resolve requests
 def admin_dashboard(request):
     requests = CustomerRequest.objects.all()
     return render(request, 'admin_dashboard.html', {'requests': requests})
 
-# Admin view to update request details
 def update_request(request, request_id):
     customer_request = CustomerRequest.objects.get(id=request_id)
     if request.method == 'POST':
@@ -52,7 +44,6 @@ def update_request(request, request_id):
             customer_request.resolved_at = timezone.now()
         customer_request.save()
 
-        # Send email to customer about the update
         send_mail(
             'Your Issue Status Update',
             f'Your issue has been updated to {customer_request.status}. Tentative resolution date: {customer_request.resolved_at}',
@@ -64,17 +55,14 @@ def update_request(request, request_id):
     return render(request, 'update_request.html', {'request': customer_request})
 
 
-from django.shortcuts import render, redirect
-from .forms import CustomerRequestForm
-
 def submit_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the form to the database
-            return render(request, 'success.html')  # Redirect to a success page
+            form.save()  
+            return render(request, 'success.html')  
     else:
-        form = CustomerRequestForm()  # Initialize a blank form
+        form = CustomerRequestForm() 
     return render(request, 'submit.html', {'form': form})
 
 
@@ -97,15 +85,13 @@ def send_test_email(request):
     except Exception as e:
         return HttpResponse(f"Error: {str(e)}")
 
-
-
 def submit_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
         if form.is_valid():
             customer_request = form.save()
             
-            # Send an email to the customer with the tracking ID
+           
             subject = 'Your Service Request Has Been Submitted'
             message = f"""
                 Hello {customer_request.customer_name},
@@ -130,15 +116,14 @@ def submit_request(request):
     return render(request, 'submit_request.html', {'form': form})
 
 
-from django.shortcuts import render, get_object_or_404
-from .models import CustomerRequest
+
 
 def track_request(request):
     tracking_id = request.GET.get('id')
     if not tracking_id:
         return render(request, 'track.html', {'error': 'Tracking ID is required.'})
     
-    # Look up the customer request by tracking ID
+   
     request_obj = get_object_or_404(CustomerRequest, tracking_id=tracking_id)
     
     return render(request, 'track.html', {'request_obj': request_obj})

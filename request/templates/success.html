@@ -9,6 +9,7 @@
             --text: #1e293b;
             --background: #f8fafc;
             --surface: #ffffff;
+            --primary: #2563eb;
         }
 
         body {
@@ -76,11 +77,34 @@
         p {
             color: #64748b;
             line-height: 1.6;
-            margin: 0;
+            margin: 0 0 1.5rem;
             animation: fadeIn 0.5s ease-out 0.7s both;
         }
 
-        /* Success Message Popup */
+        
+        .home-button {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            animation: slideInBottom 0.5s ease-out 5.5s both;
+        }
+
+        .home-button:hover {
+            background: #1d4ed8;
+        }
+
+        
         .popup {
             position: fixed;
             top: 2rem;
@@ -145,6 +169,17 @@
             }
         }
 
+        @keyframes slideInBottom {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 640px) {
             .success-container {
                 padding: 2rem;
@@ -157,9 +192,15 @@
 
             .popup {
                 top: auto;
-                bottom: 2rem;
+                bottom: 5rem; 
                 right: 1rem;
                 left: 1rem;
+            }
+
+            .home-button {
+                bottom: 1rem;
+                width: calc(100% - 2rem);
+                max-width: none;
             }
         }
     </style>
@@ -175,6 +216,6 @@
         Issue submitted successfully!
     </div>
 
-    <button onclick="window.location.href='/'">Go to Home Page</button>
+    <button class="home-button" onclick="window.location.href='/'">Go to Home Page</button>
 </body>
 </html>

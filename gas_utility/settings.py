@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',  # This must be enabled
+    'django.middleware.csrf.CsrfViewMiddleware',   
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'gas_utility.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'request/templates'],  # Ensure this points to your templates directory
+        'DIRS': [BASE_DIR / 'request/templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,17 +126,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 APPEND_SLASH = True
-
-
-
-# settings.py
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tusharkedar110@gmail.com'  # Your Gmail address
-EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  # App password from Google
+EMAIL_HOST_USER = 'tusharkedar110@gmail.com'  
+EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  

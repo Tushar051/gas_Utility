@@ -18,9 +18,8 @@ class CustomerRequest(models.Model):
 
     tracking_id = models.UUIDField(default=uuid.uuid4, editable=False)  # Remove unique=True
     
-def __str__(self):
-    return f"{self.customer_name} - {self.tracking_id}"
-
+    def __str__(self):
+        return self.customer_name
 
 
 

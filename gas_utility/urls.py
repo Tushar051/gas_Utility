@@ -20,6 +20,6 @@ from request import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),  # Redirect root URL to 'home' view of request app
-    path('request/', include('request.urls')),  # Include request app URLs
+    path('', views.home, name='home'), 
+    path('request/', include('request.urls')), 
 ]
