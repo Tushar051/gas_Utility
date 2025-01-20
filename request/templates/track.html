@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Track Your Request</title>
@@ -14,5 +14,209 @@
         <p><strong>Status:</strong> {{ request_obj.status }}</p>
         <p><strong>Tentative Resolution Date:</strong> {{ request_obj.tentative_date|default:"N/A" }}</p>
     {% endif %}
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Request</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --error: #ef4444;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --warning: #eab308;
+            --pending: #6366f1;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            background: var(--surface);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        h1 {
+            color: var(--text);
+            font-size: 1.875rem;
+            margin: 0 0 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .tracking-details {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background: #f8fafc;
+        }
+
+        .label {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .value {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .tracking-id {
+            font-family: monospace;
+            font-size: 1.1em;
+            color: var(--primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .status-pending {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .status-in-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error-message {
+            color: var(--error);
+            text-align: center;
+            padding: 1rem;
+            background: #fef2f2;
+            border-radius: 0.5rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .tentative-date {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .detail-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+
+            .label {
+                color: var(--text-secondary);
+                font-size: 0.875rem;
+            }
+
+            .value {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Track Your Request</h1>
+        
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% else %}
+            <div class="tracking-details">
+                <div class="detail-row">
+                    <div class="label">Tracking ID</div>
+                    <div class="value tracking-id">{{ request_obj.tracking_id }}</div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="label">Name</div>
+                    <div class="value">{{ request_obj.customer_name }}</div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="label">Issue</div>
+                    <div class="value">{{ request_obj.issue_description }}</div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="label">Status</div>
+                    <div class="value">
+                        <span class="status-badge status-{{ request_obj.status|lower }}">
+                            {{ request_obj.status }}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="label">Tentative Resolution</div>
+                    <div class="value">
+                        {% if request_obj.tentative_date %}
+                            <span class="tentative-date">{{ request_obj.tentative_date }}</span>
+                        {% else %}
+                            <span class="text-secondary">N/A</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
