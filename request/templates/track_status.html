@@ -1,0 +1,11 @@
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+    <h3>Request Details</h3>
+    <p><strong>Name:</strong> {{ request_data.name }}</p>
+    <p><strong>Email:</strong> {{ request_data.email }}</p>
+    <p><strong>Issue:</strong> {{ request_data.issue }}</p>
+    <p><strong>Address:</strong> {{ request_data.address }}</p>
+    <p><strong>Status:</strong> {{ request_data.status }}</p>
+    <p><strong>Submitted On:</strong> {{ request_data.created_at }}</p>
+{% endif %}

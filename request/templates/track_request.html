@@ -1,0 +1,102 @@
+<!-- <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    h3 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    .error {
+        color: red;
+        font-size: 16px;
+    }
+</style>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="tracking_id">Enter Tracking ID:</label>
+        <input type="text" id="tracking_id" name="tracking_id" required>
+        <button type="submit">Track Request</button>
+    </form>
+
+    {% if request_details %}
+        <h3>Request Status for Tracking ID: {{ request_details.tracking_id }}</h3>
+        <p>Customer: {{ request_details.customer_name }}</p>
+        <p>Email: {{ request_details.customer_email }}</p>
+        <p>Phone: {{ request_details.customer_phone }}</p>
+        <p>Status: {{ request_details.status }}</p>
+        <p>Tentative Resolution Date: {{ request_details.tentative_date }}</p>
+    {% elif error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</div> -->
+
+
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+    <h1>Request Status for {{ request.tracking_id }}</h1>
+    <p><strong>Name:</strong> {{ request.customer_name }}</p>
+    <p><strong>Status:</strong> {{ request.status }}</p>
+    <p><strong>Description:</strong> {{ request.issue_description }}</p>
+    <p><strong>Tentative Resolution Date:</strong> {{ request.tentative_date|default:"Not Assigned" }}</p>
+    <p><strong>Created At:</strong> {{ request.created_at }}</p>
+    {% if request.resolved_at %}
+        <p><strong>Resolved At:</strong> {{ request.resolved_at }}</p>
+    {% endif %}
+{% endif %}

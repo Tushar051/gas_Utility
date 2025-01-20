@@ -96,3 +96,51 @@ def send_test_email(request):
         return HttpResponse("Email sent successfully!")
     except Exception as e:
         return HttpResponse(f"Error: {str(e)}")
+
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import CustomerRequest
+
+def track_request(request):
+    tracking_id = request.GET.get('id')
+    if tracking_id:
+        customer_request = get_object_or_404(CustomerRequest, tracking_id=tracking_id)
+        return render(request, 'track_request.html', {'request': customer_request})
+    
+    return render(request, 'track_request.html', {'error': 'Invalid Tracking ID or No ID Provided'})
+
+
+from django.shortcuts import render
+from django.core.mail import send_mail
+from .forms import CustomerRequestForm
+
+def submit_request(request):
+    if request.method == 'POST':
+        form = CustomerRequestForm(request.POST)
+        if form.is_valid():
+            customer_request = form.save()
+            
+            # Send an email to the customer with the tracking ID
+            subject = 'Your Service Request Has Been Submitted'
+            message = f"""
+                Hello {customer_request.customer_name},
+                
+                Your request has been received and is currently being processed.
+                
+                Tracking ID: {customer_request.tracking_id}
+                Description: {customer_request.issue_description}
+                
+                You can track your request at:
+                http://127.0.0.1:8000/track/?id={customer_request.tracking_id}
+            """
+            from_email = 'your_email@example.com'
+            recipient_list = [customer_request.customer_email]
+            
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+            
+            return render(request, 'success.html', {'tracking_id': customer_request.tracking_id})
+    else:
+        form = CustomerRequestForm()
+    
+    return render(request, 'submit_request.html', {'form': form})

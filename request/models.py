@@ -1,8 +1,5 @@
 from django.db import models
-
-from django.db import models
-
-from django.db import models
+import uuid
 
 class CustomerRequest(models.Model):
     customer_name = models.CharField(max_length=255)  # Name of the customer
@@ -19,8 +16,11 @@ class CustomerRequest(models.Model):
     tentative_date = models.DateField(null=True, blank=True)  # Tentative resolution date
     resolved_at = models.DateTimeField(null=True, blank=True)  # Resolution timestamp
 
-    def __str__(self):
-        return self.customer_name
+    tracking_id = models.UUIDField(default=uuid.uuid4, editable=False)  # Remove unique=True
+    
+def __str__(self):
+    return f"{self.customer_name} - {self.tracking_id}"
+
 
 
 
