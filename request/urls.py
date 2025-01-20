@@ -3,9 +3,9 @@ from . import views
 
 
 
-urlpatterns = [
+urlpatterns = [ 
+    path('track/', views.track_request, name='track_request'), 
     path('', views.home, name='home'),  # Home page (customer view)
     path('submit/', views.submit_request, name='submit_request'),  # Form submission page
-     path('request/submit/', views.submit_request, name='submit_request'),
-    path('track/', views.track_request, name='track_request'),   
+    path('request/submit/', views.submit_request, name='submit_request'),
 ]

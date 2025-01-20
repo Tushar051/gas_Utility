@@ -99,22 +99,6 @@ def send_test_email(request):
 
 
 
-from django.shortcuts import render, get_object_or_404
-from .models import CustomerRequest
-
-def track_request(request):
-    tracking_id = request.GET.get('id')
-    if tracking_id:
-        customer_request = get_object_or_404(CustomerRequest, tracking_id=tracking_id)
-        return render(request, 'track_request.html', {'request': customer_request})
-    
-    return render(request, 'track_request.html', {'error': 'Invalid Tracking ID or No ID Provided'})
-
-
-from django.shortcuts import render
-from django.core.mail import send_mail
-from .forms import CustomerRequestForm
-
 def submit_request(request):
     if request.method == 'POST':
         form = CustomerRequestForm(request.POST)
@@ -144,3 +128,17 @@ def submit_request(request):
         form = CustomerRequestForm()
     
     return render(request, 'submit_request.html', {'form': form})
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import CustomerRequest
+
+def track_request(request):
+    tracking_id = request.GET.get('id')
+    if not tracking_id:
+        return render(request, 'track.html', {'error': 'Tracking ID is required.'})
+    
+    # Look up the customer request by tracking ID
+    request_obj = get_object_or_404(CustomerRequest, tracking_id=tracking_id)
+    
+    return render(request, 'track.html', {'request_obj': request_obj})

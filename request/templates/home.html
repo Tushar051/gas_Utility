@@ -170,11 +170,18 @@
 
 
         <!-- Request Tracking Section -->
-<form action="/track/" method="get">
+<!-- <form action="/track/" method="get">
   <label for="tracking_id">Enter Tracking ID:</label>
   <input type="text" name="id" id="tracking_id" required>
   <button type="submit">Track</button>
+</form> -->
+
+<form action="{% url 'track_request' %}" method="get">
+  <label for="id">Enter Tracking ID:</label>
+  <input type="text" name="id" id="id" required>
+  <button type="submit">Track</button>
 </form>
+
     </div>
 </body>
 </html>
