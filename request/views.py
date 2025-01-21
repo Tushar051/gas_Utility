@@ -5,6 +5,8 @@ from .models import CustomerRequest
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
+from .models import CustomerRequest
+from .models import CustomerRequest
 
 def home(request):
     return render(request, 'home.html')  
@@ -87,11 +89,11 @@ def send_test_email(request):
 
 def submit_request(request):
     if request.method == 'POST':
-        form = CustomerRequestForm(request.POST)
+        form = CustomerRequestForm(request.POST, request.FILES)  # Handle file uploads
         if form.is_valid():
             customer_request = form.save()
-            
-           
+
+            # Send confirmation email
             subject = 'Your Service Request Has Been Submitted'
             message = f"""
                 Hello {customer_request.customer_name},
@@ -106,7 +108,6 @@ def submit_request(request):
             """
             from_email = 'your_email@example.com'
             recipient_list = [customer_request.customer_email]
-            
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
             
             return render(request, 'success.html', {'tracking_id': customer_request.tracking_id})

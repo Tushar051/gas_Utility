@@ -6,7 +6,8 @@ class CustomerRequest(models.Model):
     customer_email = models.EmailField()             
     customer_phone = models.CharField(max_length=15) 
     customer_address = models.TextField()            
-    issue_description = models.TextField()           
+    issue_description = models.TextField()
+           
     status = models.CharField(
         max_length=50,
         choices=[('Pending', 'Pending'), ('In Progress', 'In Progress'), ('Resolved', 'Resolved')],
@@ -18,6 +19,8 @@ class CustomerRequest(models.Model):
 
     tracking_id = models.UUIDField(default=uuid.uuid4, editable=False)  
     
+    file_upload = models.FileField(upload_to='uploads/', null=True, blank=True) 
+
     def __str__(self):
         return self.customer_name
 

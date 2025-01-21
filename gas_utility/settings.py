@@ -134,3 +134,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'tusharkedar110@gmail.com'  
 EMAIL_HOST_PASSWORD = 'jhyj tyyd zgtl hbtb'  
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
