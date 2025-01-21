@@ -7,15 +7,18 @@ The system facilitates online service request submission, tracking, and seamless
 
 ## **Features**
 
-### **For Customers**
-- **Submit Issues:** Customers can easily submit issues by filling out a detailed form.
-- **Track Progress:** Track your request using the unique `Tracking ID` provided upon submission.
-- **Email Notifications:** Receive real-time updates about your request status via email.
+### Customer Features
+1. **Submit Requests**: Customers can submit service requests by filling out a detailed form.
+2. **Upload Files**: Optionally upload a file related to the issue (e.g., images, documents).
+3. **Receive Tracking ID**: Automatically receive a tracking ID via email after submission.
+4. **Track Requests**: Check the status of their requests using the tracking ID on the home page.
+5. **Receive Updates**: Get email notifications whenever the status of their request changes.
 
-### **For Admin**
-- **Manage Requests:** Admins can view, update, and manage customer requests.
-- **Assign Tentative Dates:** Provide estimated resolution dates for better customer experience.
-- **Progress Updates:** Change request statuses and keep customers informed.
+### Admin Features
+1. **View Requests**: Access a list of all service requests, including customer details.
+2. **Update Status**: Change the status of requests (e.g., Pending, In Progress, Resolved).
+3. **View Uploaded Files**: Download and view files uploaded by customers.
+4. **Set Tentative Dates**: Provide estimated resolution dates for issues.
 
 ---
 
@@ -72,5 +75,41 @@ The system facilitates online service request submission, tracking, and seamless
 3. Changes are automatically communicated to the customer via email.
 
 ---
+
+## Deployment Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd GasUtility
+   ```
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Apply database migrations:
+   ```bash
+   python manage.py migrate
+   ```
+4. Create a superuser for admin access:
+   ```bash
+   python manage.py createsuperuser
+   ```
+5. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
+6. Access the application in your browser at `http://127.0.0.1:8000/`.
+
+---
+
+ADMIN SECTION--
+username - Tushar
+Password - Kedar0510
+
+You can add yourself also 
+
+---
+
 
 THANK YOU...🙌😁
