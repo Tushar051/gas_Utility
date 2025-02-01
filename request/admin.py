@@ -13,3 +13,6 @@ def get_readonly_fields(self, request, obj=None):
             return self.readonly_fields + ('file_upload',)  
         return self.readonly_fields
 
+
+
+
