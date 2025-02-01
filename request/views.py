@@ -9,7 +9,7 @@ from .models import CustomerRequest
 from .models import CustomerRequest
 
 def home(request):
-    return render(request, 'home.html')  
+    return render(request, 'index.html')  
 
 
 def customer_request(request):
@@ -69,7 +69,7 @@ def submit_request(request):
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -89,11 +89,11 @@ def send_test_email(request):
 
 def submit_request(request):
     if request.method == 'POST':
-        form = CustomerRequestForm(request.POST, request.FILES)  # Handle file uploads
+        form = CustomerRequestForm(request.POST, request.FILES)  
         if form.is_valid():
             customer_request = form.save()
 
-            # Send confirmation email
+            
             subject = 'Your Service Request Has Been Submitted'
             message = f"""
                 Hello {customer_request.customer_name},
